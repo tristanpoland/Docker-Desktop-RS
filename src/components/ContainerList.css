@@ -1,191 +1,303 @@
-/* src/components/ContainerList.css */
+/* Panel header text fix for dark mode */
+.panel-header h2,
+.container-list .panel-header h2,
+.image-list .panel-header h2 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #e3e5f1 !important; /* Using !important to ensure it overrides other styles */
+  margin: 0;
+}
+
+/* Make sure all text in dark mode uses the correct colors */
+.container-name-text, 
+.image-name-text {
+  color: #e3e5f1 !important;
+}
+
+.status-text, 
+.container-image, 
+.container-ports,
+.image-tag, 
+.image-id, 
+.image-size, 
+.image-created {
+  color: #9ba1b9 !important;
+}
+
+/* Ensure empty states are properly styled */
+.empty-state h3 {
+  color: #e3e5f1 !important;
+}
+
+.empty-state p {
+  color: #6e7490 !important;
+}
+
+/* Button fixes for dark mode */
+.action-button,
+.container-list .action-button,
+.image-list .action-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 1px solid #383c4a;
+  border-radius: 4px;
+  background-color: #2d303a !important;
+  color: #9ba1b9 !important;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.action-button:hover:not(:disabled),
+.container-list .action-button:hover:not(:disabled),
+.image-list .action-button:hover:not(:disabled) {
+  background-color: #34384a !important;
+  border-color: #4b4f5e !important;
+}
+
+.action-button:disabled,
+.container-list .action-button:disabled,
+.image-list .action-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.action-button.primary,
+.container-list .action-button.primary,
+.image-list .action-button.primary {
+  background-color: #0ea5e9 !important;
+  color: white !important;
+  border-color: #0284c7 !important;
+}
+
+.action-button.primary:hover,
+.container-list .action-button.primary:hover,
+.image-list .action-button.primary:hover {
+  background-color: #0284c7 !important;
+  border-color: #0284c7 !important;
+}
+
+/* Fix icon buttons */
+.action-button svg,
+.container-list .action-button svg,
+.image-list .action-button svg {
+  color: #9ba1b9 !important;
+}
+
+.action-button.primary svg,
+.container-list .action-button.primary svg,
+.image-list .action-button.primary svg {
+  color: white !important;
+}
+
+/* Fix the primary button in status messages */
+.primary-button {
+  background-color: #0ea5e9 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 10px 16px !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  transition: background-color 0.2s !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+}
+
+.primary-button:hover {
+  background-color: #0284c7 !important;
+}
+
+/* Fix icon button styles */
+.action-button.icon-button {
+  padding: 6px !important;
+}
+
 .container-list {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-  }
-  
-  .panel-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 20px;
-    border-bottom: 1px solid #eaeaea;
-  }
-  
-  .panel-header h2 {
-    font-size: 18px;
-    font-weight: 500;
-    color: #333;
-    margin: 0;
-  }
-  
-  .header-actions {
-    display: flex;
-    gap: 8px;
-  }
-  
-  .action-button {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 10px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    background-color: white;
-    color: #555;
-    font-size: 13px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  
-  .action-button:hover:not(:disabled) {
-    background-color: #f5f5f5;
-    border-color: #d0d0d0;
-  }
-  
-  .action-button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  
-  .action-button.primary {
-    background-color: #0ea5e9;
-    color: white;
-    border-color: #0ea5e9;
-  }
-  
-  .action-button.primary:hover {
-    background-color: #0284c7;
-    border-color: #0284c7;
-  }
-  
-  .loading-state, .empty-state {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 0;
-    color: #666;
-    text-align: center;
-    height: 100%;
-  }
-  
-  .spinner {
-    width: 32px;
-    height: 32px;
-    border: 3px solid #f0f0f0;
-    border-top: 3px solid #0ea5e9;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-bottom: 16px;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  .empty-icon {
-    color: #d0d0d0;
-    margin-bottom: 16px;
-  }
-  
-  .empty-state h3 {
-    font-size: 16px;
-    font-weight: 500;
-    margin: 0 0 8px 0;
-  }
-  
-  .empty-state p {
-    font-size: 14px;
-    margin: 0;
-    color: #999;
-  }
-  
-  .container-table-header {
-    display: grid;
-    grid-template-columns: 2fr 2fr 2fr 1fr 120px;
-    padding: 12px 20px;
-    background-color: #f9f9f9;
-    border-bottom: 1px solid #eaeaea;
-    color: #666;
-    font-size: 13px;
-    font-weight: 500;
-  }
-  
-  .container-list-content {
-    flex: 1;
-    overflow-y: auto;
-  }
-  
-  .container-item {
-    display: grid;
-    grid-template-columns: 2fr 2fr 2fr 1fr 120px;
-    padding: 12px 20px;
-    border-bottom: 1px solid #eaeaea;
-    transition: background-color 0.2s;
-    cursor: pointer;
-    align-items: center;
-  }
-  
-  .container-item:hover {
-    background-color: #f5f5f5;
-  }
-  
-  .container-item.selected {
-    background-color: #e6f7ff;
-  }
-  
-  .container-name-text {
-    font-weight: 500;
-    color: #333;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  .status-indicator {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    margin-right: 6px;
-  }
-  
-  .status-indicator.green {
-    background-color: #10b981;
-  }
-  
-  .status-indicator.red {
-    background-color: #ef4444;
-  }
-  
-  .status-indicator.yellow {
-    background-color: #f59e0b;
-  }
-  
-  .status-text {
-    font-size: 13px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  .container-image, .container-ports {
-    font-size: 13px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  .container-actions {
-    display: flex;
-    gap: 6px;
-    justify-content: flex-end;
-  }
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: #242731;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #2c3141;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 1px solid #383c4a;
+  border-radius: 4px;
+  background-color: #2d303a;
+  color: #9ba1b9;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.action-button:hover:not(:disabled) {
+  background-color: #34384a;
+  border-color: #4b4f5e;
+}
+
+.action-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.action-button.primary {
+  background-color: #0ea5e9;
+  color: white;
+  border-color: #0284c7;
+}
+
+.action-button.primary:hover {
+  background-color: #0284c7;
+  border-color: #0284c7;
+}
+
+.loading-state, .empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+  color: #9ba1b9;
+  text-align: center;
+  height: 100%;
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #2d303a;
+  border-top: 3px solid #0ea5e9;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.empty-icon {
+  color: #4b4f5e;
+  margin-bottom: 16px;
+}
+
+.empty-state h3 {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+  color: #e3e5f1;
+}
+
+.empty-state p {
+  font-size: 14px;
+  margin: 0;
+  color: #6e7490;
+}
+
+.container-table-header {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 1fr 120px;
+  padding: 12px 20px;
+  background-color: #1a1c23;
+  border-bottom: 1px solid #2c3141;
+  color: #9ba1b9;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.container-list-content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.container-item {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 1fr 120px;
+  padding: 12px 20px;
+  border-bottom: 1px solid #2c3141;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  align-items: center;
+}
+
+.container-item:hover {
+  background-color: #272a38;
+}
+
+.container-item.selected {
+  background-color: #1b2236;
+}
+
+.container-name-text {
+  font-weight: 500;
+  color: #e3e5f1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.status-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.status-indicator.green {
+  background-color: #10b981;
+}
+
+.status-indicator.red {
+  background-color: #ef4444;
+}
+
+.status-indicator.yellow {
+  background-color: #f59e0b;
+}
+
+.status-text {
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #9ba1b9;
+}
+
+.container-image, .container-ports {
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #9ba1b9;
+}
+
+.container-actions {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+}
